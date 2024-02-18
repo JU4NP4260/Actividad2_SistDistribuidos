@@ -19,18 +19,24 @@ public class HttpManager : MonoBehaviour
     public void SendRequest(int userID)
     {
         imagesDownloadsCounter = 0;
-        if (sendRequest_GetCharacters == null)
-        {
-            sendRequest_GetCharacters = StartCoroutine(GetUserData(userID));
-        }
+        sendRequest_GetCharacters = StartCoroutine(GetUserData(userID));
+
+        //if (sendRequest_GetCharacters == null)
+        //{
+        //    sendRequest_GetCharacters = StartCoroutine(GetUserData(userID));
+        //}
+
     }
 
     IEnumerator GetUserData (int uid)
     {
         UnityWebRequest request = UnityWebRequest.Get(fakeApiUrl + "/users/" + uid);
+        Debug.Log("Getting user data...");
         yield return request;
+        Debug.Log("Response code: " + request.responseCode);
 
-        if(request.result == UnityWebRequest.Result.ConnectionError)
+
+        if (request.result == UnityWebRequest.Result.ConnectionError)
         {
             Debug.Log(request.error);
         }
@@ -52,6 +58,9 @@ public class HttpManager : MonoBehaviour
     IEnumerator GetCharacters(int cardId, int deckIndex)
     {
         UnityWebRequest request = UnityWebRequest.Get(RickAndMoryApiUrl + "/character/" + cardId);
+
+        Debug.Log("Getting Characters...");
+
         yield return request;
 
         if (request.result == UnityWebRequest.Result.ConnectionError)
