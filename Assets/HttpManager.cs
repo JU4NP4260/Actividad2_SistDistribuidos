@@ -18,6 +18,7 @@ public class HttpManager : MonoBehaviour
 
     public void SendRequest(int userID)
     {
+
         imagesDownloadsCounter = 0;
         sendRequest_GetCharacters = StartCoroutine(GetUserData(userID));
 
@@ -28,8 +29,16 @@ public class HttpManager : MonoBehaviour
 
     }
 
+    //public void GetCharatersCorutine()
+    //{
+    //    StartCoroutine(GetCharacters(1,1));
+    //}
+
     IEnumerator GetUserData (int uid)
     {
+        Debug.Log(fakeApiUrl + "/users/" + uid);
+
+
         UnityWebRequest request = UnityWebRequest.Get(fakeApiUrl + "/users/" + uid);
         Debug.Log("Getting user data...");
         yield return request;
@@ -52,6 +61,11 @@ public class HttpManager : MonoBehaviour
                     imagesDownloadsCounter++;
                 }
             }
+            else
+            {
+                //Debug.Log(request.downloadHandler.text);
+                //Debug.Log("ERROR:" + request.error);
+            }
         }
     }
 
@@ -69,6 +83,8 @@ public class HttpManager : MonoBehaviour
         }
         else
         {
+            Debug.Log(request.responseCode);
+
             if (request.responseCode == 200)
             {
                 Character character = JsonUtility.FromJson<Character>(request.downloadHandler.text);
