@@ -41,7 +41,8 @@ public class HttpManager : MonoBehaviour
 
         UnityWebRequest request = UnityWebRequest.Get(fakeApiUrl + "/users/" + uid);
         Debug.Log("Getting user data...");
-        yield return request;
+        yield return request.SendWebRequest();
+
         Debug.Log("Response code: " + request.responseCode);
 
 
@@ -75,7 +76,7 @@ public class HttpManager : MonoBehaviour
 
         Debug.Log("Getting Characters...");
 
-        yield return request;
+        yield return request.SendWebRequest();
 
         if (request.result == UnityWebRequest.Result.ConnectionError)
         {
