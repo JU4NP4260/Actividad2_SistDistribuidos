@@ -2,18 +2,18 @@
   "users":[
       {
         "id":1,
-        "username":"lololex",
-        "deck":[1,25,36,544,87]
+        "username":"NamelssJ",
+        "deck":[12,23,35,54,87]
       },
        {
         "id":2,
-        "username":"waroo",
-        "deck":[15,253,364,54,800]
+        "username":"Tertulio",
+        "deck":[15,253,364,74,630]
       },
       {
         "id":3,
-        "username":"jeje",
-        "deck":[158,315,3,5,80]
+        "username":"Jaime",
+        "deck":[158,215,3,5,80]
       }
     ],
   "cards":[
